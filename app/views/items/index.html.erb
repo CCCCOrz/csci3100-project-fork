@@ -1,0 +1,8 @@
+<h1>Marketplace</h1>
+
+<div>
+  <% @items.each do |item| %>
+    <%= render item %>
+    <p><%= link_to "Show this item", item %></p>
+  <% end %>
+</div>
