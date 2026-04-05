@@ -1,0 +1,22 @@
+<%= form_with(url: login_path, local: true, multipart: true) do |form| %>
+  <div class="form-body">
+    <div class="form-group">
+      <%= form.label :name, class: "form-label" %>
+      <%= form.text_field :name, class: "form-control", placeholder: "Enter your name", required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :password, class: "form-label" %>
+      <%= form.password_field :password, class: "form-control", id:"password", required: true %>
+    </div>
+
+    <div class="link-group">
+      <%= link_to "Register a new account", register_path, class:"link" %>
+      <%= link_to "Forgot password?", "#", class: "link" %>
+    </div>
+
+    <div style="display:flex; justify-content:center">
+      <%= form.submit "Login", class: "btn-new left", id: "submit-btn" %>
+    </div>
+  </div>
+<% end %>

@@ -16,21 +16,24 @@ users = User.create!([
     name: "user1",
     email: "user1@example.com",
     password: "123456",
-    location: "SHHO",
+    password_confirmation: "123456",
+    location: "S.H. HO College",
     created_at: Time.current
   },
   {
     name: "user2",
     email: "user2@example.com",
     password: "233333",
-    location: "UC",
+    password_confirmation: "233333",
+    location: "United College",
     created_at: Time.current
   },
   {
     name: "user3",
     email: "user3@example.com",
-    password: "66666",
-    location: "SHAW",
+    password: "666666",
+    password_confirmation: "666666",
+    location: "Shaw College",
     created_at: Time.current
   }
 ])

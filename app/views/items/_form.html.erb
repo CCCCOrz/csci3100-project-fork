@@ -11,18 +11,18 @@
       </div>
     <% end %>
 
-    <div class="mb-3 form-group">
+    <div class="form-group">
       <%= form.label :name, class: "form-label" %>
       <%= form.text_field :name, class: "form-control" %>
     </div>
 
-    <div class="mb-3 form-group">
+    <div class="form-group">
       <%= form.label :description, class: "form-label" %>
       <%= form.text_area :description, class: "form-control" %>
     </div>
 
     <div class="form-row">
-      <div class="mb-3 form-group">
+      <div class="form-group">
         <%= form.label :category, class: "form-label" %>
         <%= form.select :category, 
           options_for_select([
@@ -37,18 +37,18 @@
             { class: "form-select" } %>
         </div>
 
-        <div class="mb-3 form-group">
+        <div class="form-group">
           <%= form.label :price, class: "form-label" %>
           <%= form.number_field :price, step: 1, class: "form-control" %>
         </div>
     </div>
 
-    <div class="mb-3 form-group">
+    <div class="form-group">
       <%= form.label :seller_name, class: "form-label" %>
       <%= form.text_field :seller_name, class: "form-control", placeholder: "Enter your name" %>
     </div>
 
-    <div class="mb-3 form-group">
+    <div class="form-group">
       <%= form.label :photo, "Upload image", class: "form-label" %>
       <%= form.file_field :photo, class: "form-control", accept: "image/*" %>
       <div class="form-text">Accepted formats: JPG, PNG, GIF (Max 5MB)</div>
@@ -56,7 +56,7 @@
 
     <div class="form-btn-container">
       <%= form.submit "Post item", class: "btn-new left" %>
-      <%= link_to "← Back to Market", items_path, class:"btn-new", style:"margin-right:20px right" %>
+      <%= link_to "← Back to Market", items_path, class:"btn-new right" %>
     </div>
   </div>
 <% end %>
