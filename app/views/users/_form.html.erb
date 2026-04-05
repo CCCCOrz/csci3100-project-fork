@@ -1,0 +1,57 @@
+<%= form_with(model: user, local: true, multipart: true) do |form| %>
+  <div class="form-body">
+    <% if user.errors.any? %>
+      <div id="error_explanation">
+      <h2>Sorry, <%= pluralize(user.errors.count, "error") %> found in your submitted form:</h2>
+      <ul>
+        <% user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= form.label :name, class: "form-label" %>
+      <%= form.text_field :name, class: "form-control", placeholder: "Enter your name", required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :email, class: "form-label" %>
+      <%= form.text_field :email, class: "form-control", placeholder: "xxx@example.com", required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :location, class: "form-label" %>
+      <%= form.select :location, 
+        options_for_select([
+          ["Chung Chi College", "Chung Chi College"],
+          ["United College", "United College"],
+          ["New Asia College", "New Asia College"],
+          ["Shaw College", "Shaw College"],
+          ["Wu Yee Sun College", "Wu Yee Sun College"],
+          ["Lee Woo Sing College", "Lee Woo Sing College"],
+          ["S.H. HO College","S.H. HO College"],
+          ["Morningside College","Morningside College"],
+          ["CW Chu College","CW Chu College"]
+          ], user.location),
+          { include_blank: "Select a location" },
+          { class: "form-select" } %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :password, class: "form-label" %>
+      <%= form.password_field :password, class: "form-control", id:"password", placeholder: "At least 6 characters", required: true %>
+    </div>
+    
+    <div class="form-group">
+      <%= form.label :password_confirmation, class: "form-label" %>
+      <%= form.password_field :password_confirmation, class: "form-control", id:"password_confirmation", placeholder: "Confirm your password", required: true %>
+    </div>
+
+    <div class="form-btn-container">
+      <%= form.submit "Register", class: "btn-new left", id: "submit-btn" %>
+      <%= link_to "← Back to Login", login_path, class:"btn-new right" %>
+    </div>
+  </div>
+<% end %>

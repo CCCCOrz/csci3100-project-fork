@@ -1,0 +1,7 @@
+<% @users.each do |user| %>
+  <p>name: <%= user.name %></p>
+  <p>location: <%= user.location %></p>
+  <p>email: <%= user.email %></p>
+  <p>password: <%= user.password_digest %></p>
+<% end %>
+  

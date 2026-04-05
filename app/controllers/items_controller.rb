@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: %i[ show edit ]
+  before_action :set_user, only: %i[ index show new edit ]
 
   def index
     @items = Item.all
@@ -38,6 +39,10 @@ class ItemsController < ApplicationController
   private
     def set_item
       @item = Item.find(params[:id])
+    end
+
+    def set_user
+      @user = current_user
     end
 
     def item_params
