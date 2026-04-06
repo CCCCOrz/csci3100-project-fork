@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_05_085007) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_06_101500) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+  enable_extension "pg_trgm"
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
@@ -52,7 +53,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_05_085007) do
     t.bigint "seller_id", null: false
     t.string "status"
     t.datetime "updated_at", null: false
+    t.index ["category"], name: "index_items_on_category"
+    t.index ["description"], name: "index_items_on_description", opclass: :gin_trgm_ops, using: :gin
+    t.index ["name"], name: "index_items_on_name", opclass: :gin_trgm_ops, using: :gin
+    t.index ["post_date"], name: "index_items_on_post_date"
+    t.index ["price"], name: "index_items_on_price"
     t.index ["seller_id"], name: "index_items_on_seller_id"
+    t.index ["status"], name: "index_items_on_status"
   end
 
   create_table "users", force: :cascade do |t|
@@ -60,12 +67,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_05_085007) do
     t.string "email"
     t.string "location"
     t.string "name"
-    t.string "password"
-    t.string "password_confirmation"
     t.string "password_digest"
     t.string "password_reset_code"
     t.datetime "password_reset_expires_at"
     t.datetime "updated_at", null: false
+    t.index ["location"], name: "index_users_on_location"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
