@@ -14,9 +14,11 @@
       <strong>CUHK Only</strong>
     </div>
   <div class="user-actions">
-    <p style="font-size: 1.25rem; font-weight: 600; margin-right:40px"> Hello <%= @user.name %>! <p>
+    <p style="font-size: 1.25rem; font-weight: 600; margin-right:40px"> Hello <%= @user&.name || "CUHK User" %>! </p>
     <div class="dropdown">
-      <%= link_to "👤 View My Profile", user_path(current_user), class: "dropdown-link" %>
+      <% if current_user.present? %>
+        <%= link_to "👤 View My Profile", user_path(current_user), class: "dropdown-link" %>
+      <% end %>
       <%= link_to "🚪 Log Out", logout_path, data: { turbo_method: :delete }, class: "dropdown-link logout" %>
     </div>
   </div>
@@ -28,7 +30,12 @@
     <div class="filter-grid">
       <div class="filter-field filter-field-wide">
         <label for="keyword">Search</label>
-        <%= text_field_tag :keyword, params[:keyword], id: "keyword", class: "filter-input", placeholder: "Search by item name, keyword or seller" %>
+        <%= text_field_tag :keyword, params[:keyword], id: "keyword", class: "filter-input", placeholder: "Search by item name, keyword or seller", list: "item-name-suggestions" %>
+        <datalist id="item-name-suggestions">
+          <% @autocomplete_suggestions.each do |suggestion| %>
+            <option value="<%= suggestion %>"></option>
+          <% end %>
+        </datalist>
       </div>
 
       <div class="filter-field">
@@ -61,6 +68,17 @@
       </div>
 
       <div class="filter-field">
+        <label for="seller_location">Community</label>
+        <%= select_tag :seller_location,
+          options_for_select(
+            [["All communities", ""]] + @seller_locations.map { |location| [location.titleize, location] },
+            params[:seller_location]
+          ),
+          id: "seller_location",
+          class: "filter-select" %>
+      </div>
+
+      <div class="filter-field">
         <label for="min_price">Min Price</label>
         <%= number_field_tag :min_price, params[:min_price], id: "min_price", class: "filter-input", placeholder: "0", min: 0 %>
       </div>
@@ -68,6 +86,33 @@
       <div class="filter-field">
         <label for="max_price">Max Price</label>
         <%= number_field_tag :max_price, params[:max_price], id: "max_price", class: "filter-input", placeholder: "5000", min: 0 %>
+      </div>
+
+      <div class="filter-field">
+        <label for="posted_within_days">Posted Within</label>
+        <%= select_tag :posted_within_days,
+          options_for_select([
+            ["Any time", ""],
+            ["Last 3 days", "3"],
+            ["Last 7 days", "7"],
+            ["Last 30 days", "30"]
+          ], params[:posted_within_days]),
+          id: "posted_within_days",
+          class: "filter-select" %>
+      </div>
+
+      <div class="filter-field">
+        <label for="sort">Sort By</label>
+        <%= select_tag :sort,
+          options_for_select([
+            ["Most relevant", "relevance"],
+            ["Newest first", "newest"],
+            ["Oldest first", "oldest"],
+            ["Price: low to high", "price_low_to_high"],
+            ["Price: high to low", "price_high_to_low"]
+          ], params[:sort].presence || (params[:keyword].present? ? "relevance" : "newest")),
+          id: "sort",
+          class: "filter-select" %>
       </div>
     </div>
 
@@ -85,6 +130,10 @@
     </div>
   <% end %>
 </section>
+
+<p class="search-result-summary">
+  Showing <strong><%= @items.count %></strong> result(s)
+</p>
 
 <div class="items-grid" id="items-grid">
   <% @items.each do |item| %>
@@ -109,6 +158,9 @@
             <div class="seller-info">
               <span><%= item.seller.name || "Unknown" %></span>
             </div>
+            <div>
+            <%= item.seller.location.presence || "CUHK" %>
+          </div>
             <div>
             📅 <%= item.post_date %>
           </div>

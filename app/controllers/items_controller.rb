@@ -3,7 +3,21 @@ class ItemsController < ApplicationController
   before_action :set_user, only: %i[ index show new edit ]
 
   def index
-    @items = Item.all
+    # 先把查询结果加载成数组，避免视图里 count/size 对带 search_rank
+    # 自定义 select 的 relation 再次触发 PostgreSQL 计数 SQL。
+    @items = Item.search(search_params).to_a
+    @autocomplete_suggestions = if params[:keyword].present?
+      Item.autocomplete(params[:keyword], limit: 8)
+    else
+      Item.where.not(name: [ nil, "" ]).distinct.order(:name).limit(8).pluck(:name)
+    end
+    @seller_locations = Item.available_seller_locations
+  end
+
+  def autocomplete
+    suggestions = Item.autocomplete(params[:q])
+
+    render json: suggestions
   end
 
   def show
@@ -47,5 +61,9 @@ class ItemsController < ApplicationController
 
     def item_params
       params.require(:item).permit(:name, :category, :description, :price, :seller_name, :photo)
+    end
+
+    def search_params
+      params.permit(:keyword, :category, :status, :seller_location, :min_price, :max_price, :posted_within_days, :sort)
     end
 end

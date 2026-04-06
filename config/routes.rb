@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   root "sessions#new"
-  resources :items
+  resources :items do
+    collection do
+      get :autocomplete
+    end
+  end
   resources :users
 
   get "/register", to: "users#new"
