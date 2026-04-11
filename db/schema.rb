@@ -11,6 +11,10 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[8.1].define(version: 2026_04_11_034022) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_catalog.plpgsql"
+  enable_extension "pg_trgm"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -41,9 +45,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_11_034022) do
 
   create_table "favorites", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.integer "item_id", null: false
+    t.bigint "item_id", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.index ["item_id"], name: "index_favorites_on_item_id"
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
@@ -59,8 +63,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_11_034022) do
     t.string "status"
     t.datetime "updated_at", null: false
     t.index ["category"], name: "index_items_on_category"
-    t.index ["description"], name: "index_items_on_description"
-    t.index ["name"], name: "index_items_on_name"
+    t.index ["description"], name: "index_items_on_description", opclass: :gin_trgm_ops, using: :gin
+    t.index ["name"], name: "index_items_on_name", opclass: :gin_trgm_ops, using: :gin
     t.index ["post_date"], name: "index_items_on_post_date"
     t.index ["price"], name: "index_items_on_price"
     t.index ["seller_id"], name: "index_items_on_seller_id"
@@ -72,6 +76,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_11_034022) do
     t.string "email"
     t.string "location"
     t.string "name"
+    t.string "password"
     t.string "password_digest"
     t.string "password_reset_code"
     t.datetime "password_reset_expires_at"

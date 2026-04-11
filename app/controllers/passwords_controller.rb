@@ -6,7 +6,7 @@ class PasswordsController < ApplicationController
     user = User.find_by(email: params[:email]) ## or can be using name
     if user
       user.generate_password_reset_code!
-      UserMailer.password_reset_code(user, user.password_reset_code).deliver_now
+      UserMailer.password_reset_code(user, user.password_reset_code).deliver_later
       redirect_to verify_code_path(user_id: user.id), notice: "Already sent an verification code email given that the account email exists."
     else
       redirect_to new_password_path, alert: "User not found, already sent an verification code email given that the account email exists."
