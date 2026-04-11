@@ -1,4 +1,7 @@
 class Item < ApplicationRecord
+  has_many :favorites, dependent: :destroy
+  has_many :favorited_items, through: :favorites, source: :user
+
   belongs_to :seller, class_name: "User", foreign_key: "seller_id"
 
   has_one_attached :photo

@@ -1,0 +1,20 @@
+<h1>My Favorites</h1>
+
+<% if @favorite_items.empty? %>
+  <p>You haven't favorited any items yet.</p >
+<% else %>
+  <div class="items-grid">
+    <% @favorite_items.each do |item| %>
+      <div class="item-card">
+        <div class="card-badge"><%= item.category %></div>
+        <div class="card-content">
+          <h3 class="card-title"><%= link_to item.name, item %></h3>
+          <p class="card-description"><%= truncate(item.description, length: 50) %></p >
+          <div class="card-price">$<%= item.price %></div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<%= link_to "Back to Items", items_path, class: "btn-new mt-3" %>

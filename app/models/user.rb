@@ -1,5 +1,9 @@
 class User < ApplicationRecord
   has_many :items, foreign_key: "seller_id"
+
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_items, through: :favorites, source: :item
+  
   has_secure_password
 
   validates :name, presence: true, uniqueness: true
