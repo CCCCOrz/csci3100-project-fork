@@ -35,7 +35,7 @@
               <div class="meta-value">
                 <% @favorite_items.each do |item| %>
                   <div style="padding: 0.5rem 0; border-bottom: 1px solid #e5e7eb;">
-                    <%= link_to item.name, item_path(item), style="color: #2563eb; text-decoration: none;" %>
+                    <%= link_to item.name, item_path(item), style: "color: #2563eb; text-decoration: none;" %>
                     <span style="color: #6b7280; margin-left: 0.5rem;">- $<%= item.price %></span>
                   </div>
                 <% end %>
