@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root "sessions#new"
+  get "/analytics", to: "analytics#index"
   resources :items do
     collection do
       get :autocomplete

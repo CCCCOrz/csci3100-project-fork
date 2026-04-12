@@ -3,17 +3,17 @@
 one:
   name: alice
   email: alice@link.cuhk.edu.hk
-  location: new asia
+  location: New Asia College
   password_digest: <%= BCrypt::Password.create("password123") %>
 
 two:
   name: bob
   email: bob@link.cuhk.edu.hk
-  location: united
+  location: United College
   password_digest: <%= BCrypt::Password.create("password123") %>
 
 three:
   name: charlie
   email: charlie@link.cuhk.edu.hk
-  location: shaw
+  location: Shaw College
   password_digest: <%= BCrypt::Password.create("password123") %>

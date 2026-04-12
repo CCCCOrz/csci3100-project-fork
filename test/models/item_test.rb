@@ -30,7 +30,7 @@ class ItemTest < ActiveSupport::TestCase
   test "search filters by seller location and recent posting window" do
     travel_to Date.new(2026, 4, 6) do
       results = Item.search(
-        seller_location: "united",
+        seller_location: "United College",
         posted_within_days: 7,
         sort: "newest"
       )

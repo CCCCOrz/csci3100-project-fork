@@ -1,0 +1,135 @@
+<% content_for :head do %>
+  <%= javascript_include_tag "chart.umd.min", "data-turbo-track": "reload", defer: true %>
+<% end %>
+
+<section
+  class="analytics-shell"
+  data-controller="analytics-dashboard"
+>
+  <script type="application/json" data-analytics-dashboard-target="categoryData"><%= raw json_escape(@category_chart.to_json) %></script>
+  <script type="application/json" data-analytics-dashboard-target="statusData"><%= raw json_escape(@status_chart.to_json) %></script>
+  <script type="application/json" data-analytics-dashboard-target="priceBandsData"><%= raw json_escape(@price_band_chart.to_json) %></script>
+  <script type="application/json" data-analytics-dashboard-target="communitiesData"><%= raw json_escape(@community_chart.to_json) %></script>
+  <script type="application/json" data-analytics-dashboard-target="dailyPostsData"><%= raw json_escape(@daily_posting_series.to_json) %></script>
+
+  <div class="analytics-hero">
+    <div>
+      <p class="analytics-kicker">Marketplace Intelligence</p>
+      <h1>Interactive Dashboard</h1>
+      <p class="analytics-copy">Track listing momentum, category mix, community participation, and pricing patterns across the CUHK marketplace.</p>
+    </div>
+
+    <div class="analytics-hero-actions">
+      <%= link_to "Back to Marketplace", items_path, class: "analytics-link" %>
+    </div>
+  </div>
+
+  <div class="analytics-summary-grid">
+    <article class="analytics-stat-card">
+      <span>Total Listings</span>
+      <strong><%= @dashboard_summary[:total_items] %></strong>
+      <p>All items currently captured in the marketplace.</p>
+    </article>
+    <article class="analytics-stat-card">
+      <span>Available Now</span>
+      <strong><%= @dashboard_summary[:active_items] %></strong>
+      <p>Listings that buyers can still reach out for today.</p>
+    </article>
+    <article class="analytics-stat-card">
+      <span>Total Favorites</span>
+      <strong><%= @dashboard_summary[:favorites] %></strong>
+      <p>Saves from users keeping an eye on interesting deals.</p>
+    </article>
+    <article class="analytics-stat-card">
+      <span>Average Price</span>
+      <strong>$<%= @dashboard_summary[:average_price] %></strong>
+      <p>Mean asking price across all listed items.</p>
+    </article>
+    <article class="analytics-stat-card">
+      <span>Active Sellers</span>
+      <strong><%= @dashboard_summary[:sellers] %></strong>
+      <p>Unique sellers who have posted at least one item.</p>
+    </article>
+    <article class="analytics-stat-card">
+      <span>Sold Listings</span>
+      <strong><%= @dashboard_summary[:sold_items] %></strong>
+      <p>Items that have already completed their sale cycle.</p>
+    </article>
+  </div>
+
+  <div class="analytics-grid">
+    <article class="analytics-panel analytics-panel-wide">
+      <div class="analytics-panel-head">
+        <div>
+          <h2>Listing Momentum</h2>
+          <p>Switch between recent windows and chart styles to inspect posting activity.</p>
+        </div>
+
+        <div class="analytics-toolbar">
+          <div class="analytics-button-group">
+            <button type="button" class="analytics-chip is-active" data-days="7" data-analytics-dashboard-target="rangeButton" data-action="click->analytics-dashboard#setRange" data-analytics-dashboard-days-param="7" aria-pressed="true">7 Days</button>
+            <button type="button" class="analytics-chip" data-days="14" data-analytics-dashboard-target="rangeButton" data-action="click->analytics-dashboard#setRange" data-analytics-dashboard-days-param="14" aria-pressed="false">14 Days</button>
+            <button type="button" class="analytics-chip" data-days="30" data-analytics-dashboard-target="rangeButton" data-action="click->analytics-dashboard#setRange" data-analytics-dashboard-days-param="30" aria-pressed="false">30 Days</button>
+          </div>
+
+          <div class="analytics-button-group">
+            <button type="button" class="analytics-chip is-active" data-kind="line" data-analytics-dashboard-target="trendTypeButton" data-action="click->analytics-dashboard#setTrendType" data-analytics-dashboard-kind-param="line" aria-pressed="true">Line</button>
+            <button type="button" class="analytics-chip" data-kind="bar" data-analytics-dashboard-target="trendTypeButton" data-action="click->analytics-dashboard#setTrendType" data-analytics-dashboard-kind-param="bar" aria-pressed="false">Bar</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="analytics-chart-frame analytics-chart-frame-tall">
+        <canvas data-analytics-dashboard-target="trendCanvas"></canvas>
+      </div>
+    </article>
+
+    <article class="analytics-panel">
+      <div class="analytics-panel-head">
+        <div>
+          <h2>Category Mix</h2>
+          <p>See which item categories dominate current listings.</p>
+        </div>
+      </div>
+      <div class="analytics-chart-frame">
+        <canvas data-analytics-dashboard-target="categoryCanvas"></canvas>
+      </div>
+    </article>
+
+    <article class="analytics-panel">
+      <div class="analytics-panel-head">
+        <div>
+          <h2>Status Overview</h2>
+          <p>Compare available, reserved, and sold inventory at a glance.</p>
+        </div>
+      </div>
+      <div class="analytics-chart-frame">
+        <canvas data-analytics-dashboard-target="statusCanvas"></canvas>
+      </div>
+    </article>
+
+    <article class="analytics-panel">
+      <div class="analytics-panel-head">
+        <div>
+          <h2>Price Distribution</h2>
+          <p>Understand how listings spread across key price bands.</p>
+        </div>
+      </div>
+      <div class="analytics-chart-frame">
+        <canvas data-analytics-dashboard-target="priceCanvas"></canvas>
+      </div>
+    </article>
+
+    <article class="analytics-panel">
+      <div class="analytics-panel-head">
+        <div>
+          <h2>Community Activity</h2>
+          <p>Highlight which colleges or communities contribute the most listings.</p>
+        </div>
+      </div>
+      <div class="analytics-chart-frame">
+        <canvas data-analytics-dashboard-target="communityCanvas"></canvas>
+      </div>
+    </article>
+  </div>
+</section>

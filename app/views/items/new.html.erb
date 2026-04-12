@@ -1,7 +1,7 @@
 <div class="head-title">
   <h1>✨ Marketplace</h1>
   <div class="user-actions">
-    <p style="font-size: 1.25rem; font-weight: 600; margin-right:40px"> Hello <%= @user.name || "Guest" %>! </p>
+    <p style="font-size: 1.25rem; font-weight: 600; margin-right:40px"> Hello <%= @user&.name || "Guest" %>! </p>
     <div class="dropdown">
       <% if current_user.present? %>
         <%= link_to "👤 View My Profile", user_path(current_user), class: "dropdown-link" %>

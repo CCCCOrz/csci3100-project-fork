@@ -17,7 +17,7 @@ class ItemsControllerTest < ActionDispatch::IntegrationTest
 
   test "should filter items by community and sort by price" do
     get items_url, params: {
-      seller_location: "united",
+      seller_location: "United College",
       sort: "price_low_to_high"
     }
 

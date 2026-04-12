@@ -24,17 +24,7 @@
     <div class="form-group">
       <%= form.label :location, class: "form-label" %>
       <%= form.select :location, 
-        options_for_select([
-          ["Chung Chi College", "Chung Chi College"],
-          ["United College", "United College"],
-          ["New Asia College", "New Asia College"],
-          ["Shaw College", "Shaw College"],
-          ["Wu Yee Sun College", "Wu Yee Sun College"],
-          ["Lee Woo Sing College", "Lee Woo Sing College"],
-          ["S.H. HO College","S.H. HO College"],
-          ["Morningside College","Morningside College"],
-          ["CW Chu College","CW Chu College"]
-          ], user.location),
+        options_for_select(User::COLLEGE_LOCATIONS.map { |location| [location, location] }, user.location),
           { include_blank: "Select a location" },
           { class: "form-select" } %>
     </div>

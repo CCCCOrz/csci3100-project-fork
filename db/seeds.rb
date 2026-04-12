@@ -17,7 +17,7 @@ users = User.create!([
     email: "agnes@link.cuhk.edu.hk",
     password: "password123",
     password_confirmation: "password123",
-    location: "new asia",
+    location: "New Asia College",
     created_at: Time.current
   },
   {
@@ -25,7 +25,7 @@ users = User.create!([
     email: "ben@link.cuhk.edu.hk",
     password: "password123",
     password_confirmation: "password123",
-    location: "united",
+    location: "United College",
     created_at: Time.current
   },
   {
@@ -33,7 +33,7 @@ users = User.create!([
     email: "cathy@link.cuhk.edu.hk",
     password: "password123",
     password_confirmation: "password123",
-    location: "shaw",
+    location: "Shaw College",
     created_at: Time.current
   },
   {
@@ -41,7 +41,7 @@ users = User.create!([
     email: "daniel@link.cuhk.edu.hk",
     password: "password123",
     password_confirmation: "password123",
-    location: "morningside",
+    location: "Morningside College",
     created_at: Time.current
   },
   {
@@ -49,7 +49,7 @@ users = User.create!([
     email: "eva@link.cuhk.edu.hk",
     password: "password123",
     password_confirmation: "password123",
-    location: "s.h. ho",
+    location: "S.H. Ho College",
     created_at: Time.current
   }
 ])
