@@ -49,7 +49,7 @@ class User < ApplicationRecord
     with: CUHK_LINK_EMAIL_REGEX,
     message: "must end with @link.cuhk.edu.hk"
   }
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, length: { minimum: 6 }, allow_nil: true
   validates :password_confirmation, presence: true, if: :password_present?
 
   def self.find_seller_id(name)
@@ -57,7 +57,6 @@ class User < ApplicationRecord
     user = find_by("name ILIKE ?", "%#{clean_name}%")
     user&.id
   end
-
 
   def generate_password_reset_code!
     self.password_reset_code = rand(100000..999999).to_s
