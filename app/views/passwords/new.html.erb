@@ -1,8 +1,76 @@
-<h1>Forget Password</h1>
-<%= form_with(url: passwords_path, local: true, method: :post) do |form| %>
-  <div class="form-group">
-    <%= form.label :email, "Enter your email address", class: "form-label" %>
-    <%= form.email_field :email, class: "form-control", placeholder: "you@example.com", required: true %>
+<div class="item-detail-container">
+  <div class="item-card-detail">
+    <div class="item-layout" style="max-width: 500px; margin: 0 auto; padding: 2rem;">
+      
+      <!-- Centered Header -->
+      <h1 class="item-name" style="text-align: center; margin-bottom: 2rem; font-size: 2rem; color: #333; font-weight: 700;">Forget Password</h1>
+      
+      <!-- Form Container -->
+      <div style="background: #f8f9fa; border-radius: 0.5rem; padding: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+        
+        <%= form_with(url: passwords_path, local: true, method: :post) do |form| %>
+          
+          <div class="form-group" style="margin-bottom: 1.5rem;">
+            <%= form.label :email, "Enter your email address", 
+              class: "form-label", 
+              style: "display: block; font-weight: 600; color: #555; margin-bottom: 0.5rem; font-size: 0.9rem;" %>
+            
+            <%= form.email_field :email, 
+              class: "form-control", 
+              placeholder: "you@example.com", 
+              required: true,
+              style: "width: 100%; padding: 0.75rem 1rem; border: 1px solid #ddd; border-radius: 0.375rem; font-size: 1rem; transition: border-color 0.2s; box-sizing: border-box;" %>
+          </div>
+          
+          <%= form.submit "Send Verification Code", 
+            class: "btn-new",
+            style: "width: 100%; padding: 0.875rem 1.5rem; background: #007bff; color: white; border: none; border-radius: 0.375rem; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" %>
+          
+        <% end %>
+        
+      </div>
+      
+      <!-- Back to Login Link -->
+      <div style="text-align: center; margin-top: 1.5rem;">
+        <%= link_to "← Back to Login", login_path, 
+          style: "color: #007bff; text-decoration: none; font-weight: 600; transition: color 0.2s;" %>
+      </div>
+      
+    </div>
   </div>
-  <%= form.submit "Send Verification Code", class: "btn-new" %>
-<% end %>
+</div>
+
+<style>
+/* Form control hover and focus states */
+.form-control:hover {
+  border-color: #007bff;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+/* Button hover effect */
+.btn-new:hover {
+  background: #0056b3;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+}
+
+.btn-new:active {
+  transform: translateY(0);
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .item-layout {
+    padding: 1rem;
+  }
+  
+  .item-name {
+    font-size: 1.5rem;
+  }
+}
+</style>
