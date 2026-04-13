@@ -1,46 +1,23 @@
-Feature: user can register
+Feature: user can login
 
-  As a new_user
-  So that I can register
+  As a user already has an account
+  So that I can login
   I want the page accept my account
 
-Scenario: invalid password
+Scenario: user login
 
   Given I am on the home page
-  When I follow "Register a new account"
-  Then I should see "Sign up for Account"
-  When I fill in "user_name" with "aaaa"
-  When I fill in "user_email" with "1155123456@link.cuhk.edu.hk"
-  When I select "Chung Chi College" from "user_location"
-  When I fill in "password" with "aaaa"
-  When I fill in "password_confirmation" with "bbbb"
-  When I press "Register"
-  Then I should see "Password confirmation doesn't match Password"
-  Then I should see "Password is too short"
+	When I registered account "aaa" with email name "1155111111", password "111111"
+  When I fill in "name" with "aaa"
+  When I fill in "password" with "111111"
+	When I press "Login"
+  Then I should see "Marketplace"
 
-Scenario: invalid email
+Scenario: not exited users
 
-  Given I am on the home page
-  When I follow "Register a new account"
-  Then I should see "Sign up for Account"
-  When I fill in "user_name" with "aaaa"
-  When I fill in "user_email" with "my_email@gmail.com"
-  When I select "Chung Chi College" from "user_location"
-  When I fill in "password" with "aaaaaa"
-  When I fill in "password_confirmation" with "aaaaaa"
-  When I press "Register"
-  Then I should see "Email must end with @link.cuhk.edu.hk"
-
-Scenario: valid registration
-
-  Given I am on the home page
-  When I follow "Register a new account"
-  Then I should see "Sign up for Account"
-  When I fill in "user_name" with "aaaa"
-  When I fill in "user_email" with "1155123456@link.cuhk.edu.hk"
-  When I select "Chung Chi College" from "user_location"
-  When I fill in "password" with "aaaaaa"
-  When I fill in "password_confirmation" with "aaaaaa"
-  When I press "Register"
-  Then I should see "User was successfully created!"
-
+	Given I am on the home page
+  When I fill in "name" with "someone_not_exist_lalala"
+  When I fill in "password" with "111111"
+	When I press "Login"
+  Then I should see "Invalid name or password! Please enter again."
+	
