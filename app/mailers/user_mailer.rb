@@ -65,7 +65,7 @@ class UserMailer < ApplicationMailer
             #{@code}
           </div>
           
-          <p><strong>⚠️ This code will expire in 15 minutes.</strong></p>
+          <p><strong>⚠️ This code will expire in 1 hour.</strong></p>
           <p>If you didn't request this password reset, please ignore this email or contact support if you have concerns.</p>
           
           <p>Best regards,<br><strong>CampusTrade Team</strong></p>

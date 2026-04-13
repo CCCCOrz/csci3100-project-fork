@@ -252,3 +252,25 @@ locations_list.each do |loc|
 end
 
 puts "Finished! Created #{locations_list.count} locations."
+
+# Create admin user (safe for dev/test only)
+if Rails.env.development? || Rails.env.test?
+  admin = User.find_or_initialize_by(name: 'admin_Bin')
+  if admin.new_record?
+    admin.assign_attributes(
+      email: "Bin@link.cuhk.edu.hk",
+      password: ENV['ADMIN_PASSWORD'], 
+      password_confirmation: ENV['ADMIN_PASSWORD'],
+      location: "Shaw College", # 👉 CHANGE TO VALID LOCATION IN YOUR APP
+      admin: true
+    )
+    
+    if admin.save
+      puts "admin created!"
+    else
+      puts "❌ Admin creation failed: #{admin.errors.full_messages.join(', ')}"
+    end
+  else
+    puts "Admin user already exists (name: 'admin')"
+  end
+end

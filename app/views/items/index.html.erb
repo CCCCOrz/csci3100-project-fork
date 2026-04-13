@@ -5,6 +5,12 @@
   </div>
 
   <div class="market-summary">
+    <% if current_user&.admin? %>
+      <%= link_to '/sidekiq', class: "summary-chip", style: "display: inline-block; padding: 0.5rem 1rem; background: #f3f4f6; border-radius: 9999px; text-decoration: none; color: inherit; margin: 0.5rem 0;" do %>
+      <span class="summary-label" style="font-size: 0.75rem; color: #6b7280; margin-right: 0.5rem;">⚙️ Admin Panel</span>
+      <strong style="color: #1f2937; font-weight: 600;">Sidekiq</strong>
+      <% end %>
+    <% end %>
     <div class="summary-chip">
       <span class="summary-label">Items Listed</span>
       <strong><%= @items.count %></strong>
