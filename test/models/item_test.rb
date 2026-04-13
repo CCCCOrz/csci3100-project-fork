@@ -56,4 +56,77 @@ class ItemTest < ActiveSupport::TestCase
 
     assert_includes suggestions, "iPhone 13"
   end
+
+  test "should save item with all required fields" do
+    item = Item.new(
+      name: "Test Laptop",
+      description: "A brand new laptop for sale",
+      category: "electronics",
+      price: 999,
+      seller: users(:one) 
+    )
+
+    assert item.save          
+    assert_empty item.errors  
+  end
+
+  test "should not save item without name" do
+    item = Item.new(
+      description: "A brand new laptop for sale",
+      category: "electronics",
+      price: 999,
+      seller: users(:one)
+    )
+
+    assert_not item.save
+    assert_includes item.errors[:name], "can't be blank" 
+  end
+
+  test "should not save item without description" do
+    item = Item.new(
+      name: "Test Laptop",
+      category: "electronics",
+      price: 999,
+      seller: users(:one)
+    )
+
+    assert_not item.save
+    assert_includes item.errors[:description], "can't be blank"
+  end
+
+  test "should not save item without category" do
+    item = Item.new(
+      name: "Test Laptop",
+      description: "A brand new laptop for sale",
+      price: 999,
+      seller: users(:one)
+    )
+
+    assert_not item.save
+    assert_includes item.errors[:category], "can't be blank"
+  end
+
+  test "should not save item with invalid price" do
+    item1 = Item.new(
+      name: "Test Laptop", description: "Test", category: "electronics",
+      seller: users(:one)
+    )
+    assert_not item1.save
+    assert_includes item1.errors[:price], "can't be blank"
+
+    item2 = Item.new(
+      name: "Test Laptop", description: "Test", category: "electronics",
+      price: 0, seller: users(:one)
+    )
+    assert_not item2.save
+    assert_includes item2.errors[:price], "must be greater than 0"
+
+    item3 = Item.new(
+      name: "Test Laptop", description: "Test", category: "electronics",
+      price: -100, seller: users(:one)
+    )
+    assert_not item3.save
+    assert_includes item3.errors[:price], "must be greater than 0"
+  end
+  
 end
