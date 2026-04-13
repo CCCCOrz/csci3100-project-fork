@@ -3,6 +3,7 @@ class Item < ApplicationRecord
   has_many :favorited_items, through: :favorites, source: :user
 
   belongs_to :seller, class_name: "User", foreign_key: "seller_id"
+  belongs_to :reserver, class_name: "User", foreign_key: "reserver_id", optional: true
 
   has_one_attached :photo
 
