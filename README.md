@@ -12,7 +12,7 @@ Campus Trade is a secondhand trading website for the Chinese University of Hong 
 | `BING Zhe` | `1155210946` | `Ranger-BZ` |
 | `LI Xiaodong` | `1155211265` | `derekli-114` |
 | `ZHANG Beichen` | `1155211153` | `bczhang2005` |
-| `[Member 5]` | `[1155xxxxxx]` | `[github-id]` |
+| `ZHU Ruizheng` | `1155210937` | `CCCCOrz` |
 
 ## Setup Guide
 
@@ -140,6 +140,8 @@ The table below summarizes the features currently implemented in the codebase. P
 | Advanced Feature: Search | Fuzzy search, Auto-complete | `HUANG Ruilin` | `[Fill in]` |
 | Advanced Feature: external APIs | Mapbox for location maps, SendGrid email verification | `BING Zhe` | `N.A` |
 | Advanced Feature: Sidekiq/Redis | Sidekiq/Redis for background jobs and scheduled tasks | `ZHANG Beichen` | `[Fill in]` |
+| Cucumber tests | Cucumber tests in folder "features", including _steps.rb (except for web_steps.rb) and all .features files | `ZHU Ruizheng` | `[Fill in]` |
+| RSpec tests | RSpec tests for controllers and models | `ZHU Ruizheng` | `[Fill in]` |
 
 
 ## SimpleCov Report Screenshot
