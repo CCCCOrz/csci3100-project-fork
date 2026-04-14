@@ -89,6 +89,11 @@ Then /^(?:|I )should not see \/([^\/]*)\/$/ do |regexp|
   assert page.has_no_xpath?('//*', :text => regexp)
 end
 
+Then /^"([^"]*)" should appear before "([^"]*)"$/ do |first,last|
+  regex = / *#{first}.*#{last}/m
+  expect(page.body).to match(regex)
+end
+
 Then /^the "([^"]*)" field(?: within (.*))? should contain "([^"]*)"$/ do |field, parent, value|
   with_scope(parent) do
     field = find_field(field)

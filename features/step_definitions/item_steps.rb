@@ -4,6 +4,7 @@ When /^I create item "([^"]*)" with category "([^"]*)", price "([^"]*)"$/ do |na
     When I fill in "item_name" with "#{name}"
     When I select "#{category}" from "item_category"
     When I fill in "item_price" with "#{price}"
+    When I fill in "item_description" with "no description"
     When I press "Post item"
     When I follow "← Back to Market"
     Then I should see "#{name}"
@@ -19,11 +20,6 @@ When ('the following items exists:') do |items_table|
       When I log out
     }
   end
-end
-
-Then /^"([^"]*)" should appear before "([^"]*)"$/ do |first,last|
-  regex = / *#{first}.*#{last}/m
-  expect(page.body).to match(regex)
 end
 
 Then /^I should see all items$/ do

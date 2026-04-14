@@ -32,7 +32,3 @@ When /^I login using account "([^"]*)" with password "([^"]*)"$/ do |name, passw
   	Then I should see "Hello #{name}!"
   }
 end
-
-When /^I log out$/ do
-  click_link("Log Out")
-end

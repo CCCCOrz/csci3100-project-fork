@@ -1,10 +1,10 @@
-Feature: user can create items and see items created
+Feature: user can filter and sort items
 
   As a user
-  So that I can create items
-  I want the items being showed to other users
+  So that I can filter and sort items
+  I want the items being showed to me as the way I want
 
-Scenario: valid registration
+Scenario: item sorting by Price
 
   Given I am on the home page
   When I registered account "alice" with email name "1155111111", password "111111", location "Chung Chi College"
@@ -30,12 +30,92 @@ Scenario: valid registration
   Then "battery" should appear before "scissors"
   Then "fan" should appear before "textbook"
   Then "scissors" should appear before "textbook"
+
+Scenario: item filtering by category
+
+  Given I am on the home page
+  When I registered account "alice" with email name "1155111111", password "111111", location "Chung Chi College"
+  When I registered account "bob" with email name "1155222222", password "111111", location "United College"
+  When I registered account "cathy" with email name "1155333333", password "111111", location "New Asia College"
+  When the following items exists:
+    | name     | category    | price | owner |
+    | battery  | Electronics | 10    | alice |
+    | fan      | Furniture   | 20    | bob   |
+    | scissors | Other       | 20    | cathy |
+    | textbook | Books       | 30    | alice |
+    | shirt    | Clothing    | 30    | bob   |
+    | football | Sports      | 40    | cathy |
+    | baseball | Sports      | 50    | alice |
+    | camera   | Electronics | 50    | bob   |
+    | trousers | Clothing    | 60    | cathy |
+  When I registered account "david" with email name "1155444444", password "222222"
+  When I login using account "david" with password "222222"
   When I select "Furniture" from "category"
   When I press "Search items"
   Then I should see "fan"
   Then I should not see "battery"
-  When I select "All categories" from "category"
+  When I follow "Clear filters"
+  Then I should see all items
+
+Scenario: item filtering by location and price
+
+  Given I am on the home page
+  When I registered account "alice" with email name "1155111111", password "111111", location "Chung Chi College"
+  When I registered account "bob" with email name "1155222222", password "111111", location "United College"
+  When I registered account "cathy" with email name "1155333333", password "111111", location "New Asia College"
+  When the following items exists:
+    | name     | category    | price | owner |
+    | battery  | Electronics | 10    | alice |
+    | fan      | Furniture   | 20    | bob   |
+    | scissors | Other       | 20    | cathy |
+    | textbook | Books       | 30    | alice |
+    | shirt    | Clothing    | 30    | bob   |
+    | football | Sports      | 40    | cathy |
+    | baseball | Sports      | 50    | alice |
+    | camera   | Electronics | 50    | bob   |
+    | trousers | Clothing    | 60    | cathy |
+  When I registered account "david" with email name "1155444444", password "222222"
+  When I login using account "david" with password "222222"
   When I select "New Asia College" from "seller_location"
   When I press "Search items"
   Then I should see "scissors"
   Then I should not see "fan"
+  When I fill in "min_price" with "20"
+  When I fill in "max_price" with "50"
+  When I press "Search items"
+  Then I should see "scissors"
+  Then I should see "football"
+  Then I should not see "textbook"
+  Then I should not see "camera"
+  Then I should not see "fan"
+
+Scenario: item filtering by availability
+
+  Given I am on the home page
+  When I registered account "alice" with email name "1155111111", password "111111", location "Chung Chi College"
+  When I registered account "bob" with email name "1155222222", password "111111", location "United College"
+  When I registered account "cathy" with email name "1155333333", password "111111", location "New Asia College"
+  When the following items exists:
+    | name     | category    | price | owner |
+    | battery  | Electronics | 10    | alice |
+    | fan      | Furniture   | 20    | bob   |
+    | scissors | Other       | 20    | cathy |
+    | textbook | Books       | 30    | alice |
+    | shirt    | Clothing    | 30    | bob   |
+    | football | Sports      | 40    | cathy |
+    | baseball | Sports      | 50    | alice |
+    | camera   | Electronics | 50    | bob   |
+    | trousers | Clothing    | 60    | cathy |
+  When I registered account "david" with email name "1155444444", password "222222"
+  When I login using account "david" with password "222222"
+  When I find the detail of "battery"
+  Then I should see "Description"
+  Then I should see "Posted Date"
+  When I follow "Purchase"
+  When I follow "← Back to Market"
+  Then "battery" should appear before "Sold"
+  When I select "Sold" from "status"
+  When I press "Search items"
+  Then I should see "battery"
+  Then I should not see "textbook"
+  Then I should not see "camera"
