@@ -95,6 +95,15 @@
                   }, 
                   class: "btn-new item-btn" %>
     <% end %>
+
+    <% if current_user && current_user.id == item.seller.id %>
+      <%= link_to "Delete Item", item_path(item), 
+        data: { 
+      turbo_method: :delete,
+      turbo_confirm: "Are you sure?"
+        },
+        class: "btn-new item-btn" %>
+    <% end %>
     
     <%= link_to "← Back to Market", items_path, class: "btn-new item-btn" %>
   </div>

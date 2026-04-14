@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: %i[ show edit ]
+  before_action :set_item, only: %i[ show edit destroy ]
   before_action :set_user, only: %i[ index show new edit ]
+  before_action :check_seller_permission, only: [ :destroy ]
+
 
   def index
     @active_quick_filters = selected_quick_filters
@@ -80,6 +82,14 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    @item.destroy
+    respond_to do |format|
+      format.html { redirect_to items_url, notice: 'Item was successfully deleted.' }
+      format.json { head :no_content }
+    end
+  end
+
   private
     def set_item
       @item = Item.find(params[:id])
@@ -144,6 +154,13 @@ class ItemsController < ApplicationController
       else
       # Default sorting (alphabetical by location)
       [ item.seller.location, item.id ]
+      end
+    end
+
+    def check_seller_permission
+      unless current_user.id == @item.seller.id  # Adjust this based on your association
+        flash[:alert] = "You can only delete items you created."
+        redirect_to items_path
       end
     end
 end
