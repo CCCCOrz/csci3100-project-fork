@@ -163,3 +163,8 @@ You can also add a short note below the screenshot:
 
 ## Side notes
 - The SendGrid API offcial sending requires a formal domain name, this project only uses single sender API, so it comes from personal .gmail address. Possibly needs to look up in trash mail folder. Email send might take up to 5 minutes.
+- Users can choose to purchase or reserve items. Once they have reserved an item, it could not be purchased or reserved by any other users.
+- Some Hidden rules for users from different college:
+  (1) Users from Chung Chi College will see items from Chung Chi College and S.H.HO College listed with priority
+  (2) Users from United College will see items from United College and New Asia College listed with priority
+  (3) Only users from Shaw College can reserve items from their college
