@@ -9,7 +9,7 @@ Campus Trade is a secondhand trading website for the Chinese University of Hong 
 | Name | Student ID | GitHub Username |
 | --- | --- | --- |
 | `HUANG Ruilin` | `1155211049` | `cuhk11049` |
-| `[Member 2]` | `[1155xxxxxx]` | `[github-id]` |
+| `BING Zhe` | `1155210946` | `Ranger-BZ` |
 | `[Member 3]` | `[1155xxxxxx]` | `[github-id]` |
 | `[Member 4]` | `[1155xxxxxx]` | `[github-id]` |
 | `[Member 5]` | `[1155xxxxxx]` | `[github-id]` |
@@ -129,13 +129,14 @@ bundle exec cucumber
 
 The table below summarizes the features currently implemented in the codebase. Please replace the owner fields with the actual teammate names.
 
-| Feature | Description | Primary Contributor | Other Contributors|
+| Feature | Description | Primary Contributor | Other Contributors |
 | --- | --- | --- | --- |
-
 | Login email restrictions | Register with validated `@link.cuhk.edu.hk` email | `HUANG Ruilin` | `[Fill in]` |
-| Advanced Feature: Analytics |  View charts and summaries for listing activity, categories, status, pricing, and community activity| `HUANG Ruilin` | `[Fill in]` |
-| Advanced Feature: Search|  Fuzzy search,Auto-complete | `HUANG Ruilin` | `[Fill in]` |
+| Item MVC | | | |
+| Advanced Feature: Analytics | View charts and summaries for listing activity, categories, status, pricing, and community activity | `HUANG Ruilin` | `[Fill in]` |
+| Advanced Feature: Search | Fuzzy search, Auto-complete | `HUANG Ruilin` | `[Fill in]` |
 | Search and filtering | Search by keyword and filter by category, status, seller location, price range, and recent posting days | `[Fill in]` | `[Fill in]` |
+| Advanced Feature: external APIs | Mapbox for location maps, SendGrid email verification| `BING Zhe` | `[Fill in]` |
 
 ## SimpleCov Report Screenshot
 
@@ -158,3 +159,5 @@ You can also add a short note below the screenshot:
 - Demo URL: `[Fill in]`
 - Demo video: `[Fill in]`
 
+## Side notes
+- The SendGrid API offcial sending requires a formal domain name, this project only uses single sender API, so it comes from personal .gmail address. Possibly needs to look up in trash mail folder. Email send might take up to 5 minutes.

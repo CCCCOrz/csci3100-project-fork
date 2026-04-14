@@ -3,6 +3,11 @@ class ItemsController < ApplicationController
   before_action :set_user, only: %i[ index show new edit ]
 
   def index
+    @items = Item.includes(:seller).all
+    if @user&.location.present?
+      @items = @items.sort_by { |item| custom_sort_priority(item, @user.location) }
+    end
+
     @active_quick_filters = selected_quick_filters
     @search_filters = effective_search_filters
     @favorite_item_ids = current_user.present? ? current_user.favorite_items.ids : []
@@ -119,5 +124,27 @@ class ItemsController < ApplicationController
         "available_now" => { status: "available" },
         "books_notes" => { category: "books" }
       }
+    end
+
+    def custom_sort_priority(item, user_location)
+      case user_location
+      when "United College"
+        # For users from location A: prioritize items from A, then C, then others
+        case item.seller.location
+        when "United College" then 0  # Highest priority
+        when "New Aisa College" then 1  # Second priority
+        else 2           # Lowest priority
+        end
+      when "Chung Chi College"
+        # For users from location B: customize as needed
+        case item.seller.location
+        when "Chung Chi College" then 0
+        when "S.H. Ho College" then 1
+        else 2
+        end
+      else
+      # Default sorting (alphabetical by location)
+      [ item.seller.location, item.id ]
+      end
     end
 end

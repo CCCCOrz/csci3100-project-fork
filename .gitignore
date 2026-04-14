@@ -36,3 +36,6 @@
 
 # Ignore local Codex workspace metadata.
 .codex
+
+# the coverage tests
+/coverage
