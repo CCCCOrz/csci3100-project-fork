@@ -22,7 +22,7 @@ Scenario: item sorting by Price
     | camera   | Electronics | 50    | bob   |
     | trousers | Clothing    | 60    | cathy |
   When I registered account "david" with email name "1155444444", password "222222"
-  When I login using account "david" with password "222222"
+  Then I login using account "david" with password "222222"
   Then I should see all items
   When I select "Price: low to high" from "sort"
   When I press "Search items"
@@ -30,6 +30,45 @@ Scenario: item sorting by Price
   Then "battery" should appear before "scissors"
   Then "fan" should appear before "textbook"
   Then "scissors" should appear before "textbook"
+  When I select "Price: high to low" from "sort"
+  When I press "Search items"
+  Then "trousers" should appear before "camera"
+  Then "trousers" should appear before "baseball"
+  Then "baseball" should appear before "football"
+  Then "camera" should appear before "football"
+
+Scenario: item sorting by time
+
+  Given I am on the home page
+  When I registered account "alice" with email name "1155111111", password "111111", location "Chung Chi College"
+  When I registered account "bob" with email name "1155222222", password "111111", location "United College"
+  When I registered account "cathy" with email name "1155333333", password "111111", location "New Asia College"
+  When the following items exists:
+    | name     | category    | price | owner |
+    | battery  | Electronics | 10    | alice |
+    | fan      | Furniture   | 20    | bob   |
+    | scissors | Other       | 20    | cathy |
+    | textbook | Books       | 30    | alice |
+    | shirt    | Clothing    | 30    | bob   |
+    | football | Sports      | 40    | cathy |
+    | baseball | Sports      | 50    | alice |
+    | camera   | Electronics | 50    | bob   |
+    | trousers | Clothing    | 60    | cathy |
+  When I registered account "david" with email name "1155444444", password "222222"
+  Then I login using account "david" with password "222222"
+  Then I should see all items
+  When I select "Oldest first" from "sort"
+  When I press "Search items"
+  Then "battery" should appear before "fan"
+  Then "fan" should appear before "scissors"
+  Then "scissors" should appear before "textbook"
+  Then "textbook" should appear before "shirt"
+  When I select "Newest first" from "sort"
+  When I press "Search items"
+  Then "shirt" should appear before "textbook"
+  Then "textbook" should appear before "scissors"
+  Then "scissors" should appear before "fan"
+  Then "fan" should appear before "battery"
 
 Scenario: item filtering by category
 
@@ -49,7 +88,7 @@ Scenario: item filtering by category
     | camera   | Electronics | 50    | bob   |
     | trousers | Clothing    | 60    | cathy |
   When I registered account "david" with email name "1155444444", password "222222"
-  When I login using account "david" with password "222222"
+  Then I login using account "david" with password "222222"
   When I select "Furniture" from "category"
   When I press "Search items"
   Then I should see "fan"
@@ -75,7 +114,7 @@ Scenario: item filtering by location and price
     | camera   | Electronics | 50    | bob   |
     | trousers | Clothing    | 60    | cathy |
   When I registered account "david" with email name "1155444444", password "222222"
-  When I login using account "david" with password "222222"
+  Then I login using account "david" with password "222222"
   When I select "New Asia College" from "seller_location"
   When I press "Search items"
   Then I should see "scissors"
@@ -107,7 +146,7 @@ Scenario: item filtering by availability
     | camera   | Electronics | 50    | bob   |
     | trousers | Clothing    | 60    | cathy |
   When I registered account "david" with email name "1155444444", password "222222"
-  When I login using account "david" with password "222222"
+  Then I login using account "david" with password "222222"
   When I find the detail of "battery"
   Then I should see "Description"
   Then I should see "Posted Date"

@@ -24,11 +24,20 @@ When /^I registered account "([^"]*)" with email name "([^"]*)", password "([^"]
   }
 end
 
-When /^I login using account "([^"]*)" with password "([^"]*)"$/ do |name, password|
+Then /^I login using account "([^"]*)" with password "([^"]*)"$/ do |name, password|
   steps %{
     When I fill in "name" with "#{name}"
     When I fill in "password" with "#{password}"
     When I press "Login"
   	Then I should see "Hello #{name}!"
+  }
+end
+
+Then /^I login using account "([^"]*)" with password "([^"]*)" should fail$/ do |name, password|
+  steps %{
+    When I fill in "name" with "#{name}"
+    When I fill in "password" with "#{password}"
+    When I press "Login"
+  	Then I should see "Invalid name or password! Please enter again."
   }
 end

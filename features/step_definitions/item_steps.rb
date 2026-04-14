@@ -15,7 +15,7 @@ When ('the following items exists:') do |items_table|
   @all_items=items_table
   items_table.hashes.each do |item_params|
     steps %{
-      When I login using account "#{item_params[:owner]}" with password "111111"
+      Then I login using account "#{item_params[:owner]}" with password "111111"
       When I create item "#{item_params[:name]}" with category "#{item_params[:category]}", price "#{item_params[:price]}"
       When I log out
     }

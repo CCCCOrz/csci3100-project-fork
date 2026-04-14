@@ -21,7 +21,7 @@ Scenario: adding favorite items
     | camera   | Electronics | 50    | bob   |
     | trousers | Clothing    | 60    | cathy |
   When I registered account "david" with email name "1155444444", password "222222"
-  When I login using account "david" with password "222222"
+  Then I login using account "david" with password "222222"
   When I add the item "fan" to favorites
   When I follow "My Favorites"
   Then I should see "fan"

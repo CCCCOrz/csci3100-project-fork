@@ -20,4 +20,17 @@ Scenario: not exited users
   When I fill in "password" with "111111"
 	When I press "Login"
   Then I should see "Invalid name or password! Please enter again."
+
+Scenario: forgot password
+
+  Given I am on the home page
+	When I registered account "aaa" with email name "1155111111", password "111111"
+  When I follow "Forgot password?"
+  Then I should see "Enter your email address"
+  When I fill in "email" with "aaa@qq.com"
+  When I press "Send Verification Code"
+  Then I should see "User not found. Please check your email address."
+  When I fill in "email" with "1155111111@link.cuhk.edu.hk"
+  When I press "Send Verification Code"
+  Then I should see "Enter Verification Code"
 	
