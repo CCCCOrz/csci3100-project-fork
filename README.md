@@ -14,17 +14,6 @@ Campus Trade is a secondhand trading website for the Chinese University of Hong 
 | `[Member 4]` | `[1155xxxxxx]` | `[github-id]` |
 | `[Member 5]` | `[1155xxxxxx]` | `[github-id]` |
 
-## Tech Stack
-
-- Ruby on Rails 8
-- PostgreSQL
-- Hotwire (Turbo + Stimulus)
-- Sidekiq + Redis
-- Cucumber, Minitest, RSpec gems
-- SimpleCov gem for test coverage
-- Mapbox for location display
-- SendGrid for email delivery
-
 ## Setup Guide
 
 ### 1. Prerequisites
