@@ -156,10 +156,14 @@ You can also add a short note below the screenshot:
 
 ## Demo / Deployment
 
-`TODO:` Add your deployed URL, demo video link, or leave this section out if not required.
-
-- Demo URL: `[Fill in]`
+- Demo URL: <https://csci3100-proj.onrender.com/>
 - Demo video: `[Fill in]`
 
 ## Side notes
 - The SendGrid API offcial sending requires a formal domain name, this project only uses single sender API, so it comes from personal .gmail address. Possibly needs to look up in trash mail folder. Email send might take up to 5 minutes.
+- Users can choose to purchase or reserve items. Once they have reserved an item, it could not be purchased or reserved by any other users.
+- Some Hidden rules for users from different college (SaaS Angle):
+  (1) Users from Chung Chi College will see items from Chung Chi College and S.H.HO College listed with priority
+  (2) Users from United College will see items from United College and New Asia College listed with priority
+  (3) Only users from Shaw College can reserve items from their college
+  The priority effect will disappear after filter sorting is set.
