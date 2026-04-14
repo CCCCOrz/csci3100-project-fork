@@ -27,3 +27,7 @@ end
 When /^I log out$/ do
   click_link("Log Out")
 end
+
+Then /^I should find my statistics$/ do
+  expect(page).to have_css('canvas')
+end
