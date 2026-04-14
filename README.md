@@ -10,6 +10,7 @@ Campus Trade is a secondhand trading website for the Chinese University of Hong 
 | --- | --- | --- |
 | `HUANG Ruilin` | `1155211049` | `cuhk11049` |
 | `BING Zhe` | `1155210946` | `Ranger-BZ` |
+| `LI Xiaodong` | `1155211265` | `derekli-114` |
 | `[Member 3]` | `[1155xxxxxx]` | `[github-id]` |
 | `[Member 4]` | `[1155xxxxxx]` | `[github-id]` |
 | `[Member 5]` | `[1155xxxxxx]` | `[github-id]` |
@@ -131,10 +132,12 @@ The table below summarizes the features currently implemented in the codebase. P
 
 | Feature | Description | Primary Contributor | Other Contributors |
 | --- | --- | --- | --- |
+
+| Basic CRUD Feautre | Main menu + Item display + Post item + Edit user profile + Naive purchase and reserve function | `LI Xiaodong` | `BING Zhe` |
+| Account Register and Login | Register with name, email, location and password; Login with name and password | `LI Xiaodong` | `[Fill in]` |
 | Login email restrictions | Register with validated `@link.cuhk.edu.hk` email | `HUANG Ruilin` | `[Fill in]` |
-| Item MVC | | | |
-| Advanced Feature: Analytics | View charts and summaries for listing activity, categories, status, pricing, and community activity | `HUANG Ruilin` | `[Fill in]` |
-| Advanced Feature: Search | Fuzzy search, Auto-complete | `HUANG Ruilin` | `[Fill in]` |
+| Advanced Feature: Analytics | View charts and summaries for listing activity, categories, status, pricing, and community activity| `HUANG Ruilin` | `[Fill in]` |
+| Advanced Feature: Search| Fuzzy search,Auto-complete | `HUANG Ruilin` | `[Fill in]` |
 | Search and filtering | Search by keyword and filter by category, status, seller location, price range, and recent posting days | `[Fill in]` | `[Fill in]` |
 | Advanced Feature: external APIs | Mapbox for location maps, SendGrid email verification| `BING Zhe` | `[Fill in]` |
 
