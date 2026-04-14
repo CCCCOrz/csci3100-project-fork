@@ -9,6 +9,7 @@ Campus Trade is a Ruby on Rails marketplace web application for the CUHK communi
 ## Team
 
 | Name | Student ID | GitHub Username |
+| --- | --- | --- | --- |
 | `HUANG Ruilin` | `1155211049` | `cuhk11049` |
 | `[Member 2]` | `[1155xxxxxx]` | `[github-id]` |
 | `[Member 3]` | `[1155xxxxxx]` | `[github-id]` |
@@ -141,24 +142,10 @@ bundle exec cucumber
 
 The table below summarizes the features currently implemented in the codebase. Please replace the owner fields with the actual teammate names.
 
-| Feature | Description | Primary Contributor | Secondary Contributor / Reviewer |
+| Feature | Description | Primary Contributor | Other Contributors|
 | --- | --- | --- | --- |
-| User registration | Register with validated `@link.cuhk.edu.hk` email and password confirmation | `[Fill in]` | `[Fill in]` |
-| User login/logout | Authenticate existing users and manage session login/logout | `[Fill in]` | `[Fill in]` |
-| User profile management | View and edit user profile details such as name and location | `[Fill in]` | `[Fill in]` |
-| Marketplace listing | Browse all posted items in the marketplace | `[Fill in]` | `[Fill in]` |
-| Item creation | Create a new item with name, category, description, price, and photo | `[Fill in]` | `[Fill in]` |
-| Item detail page | View an item's full information and view counter | `[Fill in]` | `[Fill in]` |
-| Search and filtering | Search by keyword and filter by category, status, seller location, price range, and recent posting days | `[Fill in]` | `[Fill in]` |
-| Sorting and quick filters | Sort by relevance/date/price and use quick filters such as under 100 or available now | `[Fill in]` | `[Fill in]` |
-| Autocomplete search | Provide keyword suggestions while searching item names | `[Fill in]` | `[Fill in]` |
-| Favorites | Save and remove favorite items and view favorite listings | `[Fill in]` | `[Fill in]` |
-| Reserve / purchase flow | Mark items as reserved or sold | `[Fill in]` | `[Fill in]` |
-| Password reset by email | Send verification code and reset password through email flow | `[Fill in]` | `[Fill in]` |
-| Analytics dashboard | View charts and summaries for listing activity, categories, status, pricing, and community activity | `[Fill in]` | `[Fill in]` |
-| Location pages | Browse CUHK-related locations and visualize them on Mapbox maps | `[Fill in]` | `[Fill in]` |
-| Background email report | Scheduled daily report worker using Sidekiq and cron | `[Fill in]` | `[Fill in]` |
-| Admin seed account | Seed an admin user for development/test environments | `[Fill in]` | `[Fill in]` |
+| Login email restrictions | Register with validated `@link.cuhk.edu.hk` email | `HUANG Ruilin` | `[Fill in]` |
+
 
 
 ## SimpleCov Report Screenshot
