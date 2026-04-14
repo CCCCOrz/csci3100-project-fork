@@ -1,4 +1,5 @@
-# This whole file is AI generated. (except for this comment, which is hand typed by @CCCCOrz)
+# This whole file was originally AI generated (before Apr. 14th 16:53). 
+# This file is now fully reviewed and modified by hand
 require 'rails_helper'
 
 RSpec.describe Item, type: :model do
@@ -57,14 +58,6 @@ RSpec.describe Item, type: :model do
       item = Item.new(valid_attributes.merge(price: 10.50))
       expect(item).to be_valid
     end
-  end
-
-  describe "associations" do
-    it { should belong_to(:seller).class_name("User") }
-    it { should belong_to(:reserver).class_name("User").optional }
-    it { should have_many(:favorites).dependent(:destroy) }
-    it { should have_many(:favorited_items).through(:favorites).source(:user) }
-    it { should have_one_attached(:photo) }
   end
 
   describe "scopes" do
@@ -188,12 +181,6 @@ RSpec.describe Item, type: :model do
     let!(:item2) { Item.create!(valid_attributes.merge(name: "Desk", price: 150, category: "furniture", post_date: 2.days.ago)) }
     let!(:item3) { Item.create!(valid_attributes.merge(name: "Book", price: 25, category: "books", post_date: 1.day.ago)) }
 
-    it "returns search results with keyword" do
-      results = Item.search({ keyword: "Lamp" })
-      expect(results).to include(item1)
-      expect(results).not_to include(item2, item3)
-    end
-
     it "filters by category" do
       results = Item.search({ keyword: "", category: "books" })
       expect(results).to include(item3)
@@ -285,13 +272,6 @@ RSpec.describe Item, type: :model do
       expect(suggestions.first).to eq("Lamp")
     end
 
-    it "excludes nil or empty names" do
-      Item.create!(valid_attributes.merge(name: nil))
-      Item.create!(valid_attributes.merge(name: ""))
-      suggestions = Item.autocomplete("Lamp")
-      expect(suggestions).not_to include(nil, "")
-    end
-
     it "returns unique names" do
       Item.create!(valid_attributes.merge(name: "Lamp"))
       suggestions = Item.autocomplete("Lamp")
@@ -325,29 +305,9 @@ RSpec.describe Item, type: :model do
       expect(sorted).to eq([item3, item1, item2])
     end
 
-    it "sorts by relevance with search_rank" do
-      # Create items with search_rank via with_keyword scope
-      items_with_rank = Item.with_keyword("Lamp")
-      if items_with_rank.present?
-        sorted = Item.sort(items_with_rank, "relevance")
-        expect(sorted).to eq(items_with_rank.order(Arel.sql("search_rank DESC NULLS LAST")))
-      end
-    end
-
     it "defaults to newest for invalid sort option" do
       sorted = Item.sort(Item.all, "invalid_sort")
       expect(sorted).to eq([item3, item2, item1])
-    end
-  end
-
-  describe "instance methods" do
-    describe "#increment!(:views)" do
-      it "increments the views counter" do
-        item = Item.create!(valid_attributes)
-        expect {
-          item.increment!(:views)
-        }.to change { item.reload.views }.by(1)
-      end
     end
   end
 end

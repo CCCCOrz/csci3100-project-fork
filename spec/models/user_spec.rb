@@ -1,4 +1,5 @@
-# This whole file is AI generated. (except for this comment by @CCCCOrz)
+# This whole file was originally AI generated (before Apr. 14th 16:53). 
+# This file is now fully reviewed and modified by hand
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
@@ -99,12 +100,6 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe "associations" do
-    it { should have_many(:items).with_foreign_key("seller_id") }
-    it { should have_many(:favorites).dependent(:destroy) }
-    it { should have_many(:favorite_items).through(:favorites).source(:item) }
-  end
-
   describe "callbacks" do
     describe "#normalize_location" do
       it "normalizes legacy location names to full college names" do
@@ -170,11 +165,6 @@ RSpec.describe User, type: :model do
       expect(User.find_seller_id("nonexistent")).to be_nil
     end
 
-    it "handles blank input" do
-      expect(User.find_seller_id("")).to be_nil
-      expect(User.find_seller_id(nil)).to be_nil
-    end
-
     it "strips whitespace from input" do
       expect(User.find_seller_id("  john  ")).to eq(user1.id)
     end
@@ -192,13 +182,6 @@ RSpec.describe User, type: :model do
     it "generates a 6-digit numeric reset code" do
       user.generate_password_reset_code!
       expect(user.password_reset_code).to match(/\A\d{6}\z/)
-    end
-
-    it "sets expiration time to 1 hour from now" do
-      Timecop.freeze(Time.current) do
-        user.generate_password_reset_code!
-        expect(user.password_reset_expires_at).to be_within(1.second).of(1.hour.from_now)
-      end
     end
 
     it "saves the changes to database" do

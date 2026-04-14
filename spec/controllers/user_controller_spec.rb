@@ -1,4 +1,5 @@
-# This whole file is AI generated. (except for this comment by @CCCCOrz)
+# This whole file was originally AI generated (before Apr. 14th 16:53). 
+# This file is now fully reviewed and modified by hand
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
