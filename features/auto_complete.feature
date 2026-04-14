@@ -24,3 +24,6 @@ Scenario: main page keyword filter
   When I registered account "david" with email name "1155444444", password "222222"
   Then I login using account "david" with password "222222"
   Then I should see keyword filter
+  When I fill in "keyword" with "football"
+  When I press "Search items"
+  Then "football" should appear before "baseball"
